@@ -1,9 +1,40 @@
-import './styles/App.css';
+import React from "react";
+import './App.css'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-import React from 'react';
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Users from "./pages/Users";
 
-const App = () => {
-  return <div>App</div>;
-};
+export default function App() {
+  return (
+    <Router>
+      <div className="container">
+        <nav>
+          <ul className="menu">
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/users">Users</Link>
+            </li>
+          </ul>
+        </nav>
 
-export default App;
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/about" component={About} />
+          <Route exact path="/users" component={Users} />
+        </Switch>
+      </div>
+    </Router>
+  );
+}
